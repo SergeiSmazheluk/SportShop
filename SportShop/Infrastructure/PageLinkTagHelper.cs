@@ -17,6 +17,15 @@ namespace SportShop.Infrastructure
             urlHelperFactory = helperFactory;
         }
 
+        public bool PageClassesEnabled { get; set; } = false;
+
+        public string PageClass { get; set; } = string.Empty;
+
+        public string PageClassNormal { get; set; } = string.Empty;
+
+        public string PageClassSelected { get; set; } = string.Empty;
+
+
         [ViewContext]
         [HtmlAttributeNotBound]
         public ViewContext ViewContext { get; set; }
@@ -30,18 +39,24 @@ namespace SportShop.Infrastructure
             if (ViewContext != null && PageModel != null)
             {
                 var urlHelper = urlHelperFactory.GetUrlHelper(ViewContext);
-                
+
                 var result = new TagBuilder("div");
-                
+
                 for (int i = 1; i <= PageModel.TotalPages; i++)
                 {
                     var tag = new TagBuilder("a");
-                    
+
                     tag.Attributes["href"] = urlHelper.Action(PageAction, new { productPage = i });
-                    
+
                     tag.InnerHtml.Append(i.ToString());
-                    
+
                     result.InnerHtml.AppendHtml(tag);
+
+                    if (PageClassesEnabled)
+                    {
+                        tag.AddCssClass(PageClass);
+                        tag.AddCssClass(i == PageModel.CurrentPage ? PageClassSelected : PageClassNormal);
+                    }
                 }
 
                 output.Content.AppendHtml(result.InnerHtml);
