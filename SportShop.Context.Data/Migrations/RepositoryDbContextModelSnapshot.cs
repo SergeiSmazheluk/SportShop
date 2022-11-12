@@ -71,11 +71,11 @@ namespace SportShop.Context.Data.Migrations
 
             modelBuilder.Entity("SportShop.Domain.Core.Models.Product", b =>
                 {
-                    b.Property<long>("ProductId")
+                    b.Property<int>("ProductId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint");
+                        .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("ProductId"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ProductId"));
 
                     b.Property<string>("Category")
                         .IsRequired()

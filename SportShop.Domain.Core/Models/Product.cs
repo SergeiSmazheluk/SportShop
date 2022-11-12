@@ -5,7 +5,7 @@ namespace SportShop.Domain.Core.Models
 {
 	public class Product
 	{
-		public long ProductId { get; set; }
+		public int ProductId { get; set; }
 
 		[Required(ErrorMessage = "Please enter a product name")]
 		public string Name { get; set; } = string.Empty;

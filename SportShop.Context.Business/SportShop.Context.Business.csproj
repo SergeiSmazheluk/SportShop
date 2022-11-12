@@ -6,4 +6,14 @@
     <Nullable>disable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Mapster" Version="7.3.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\SportShop.Context.Data\SportShop.Context.Data.csproj" />
+    <ProjectReference Include="..\SportShop.Domain.Data\SportShop.Domain.Interfaces.csproj" />
+    <ProjectReference Include="..\SportShop.Services.Interfaces\SportShop.Services.Interfaces.csproj" />
+  </ItemGroup>
+
 </Project>

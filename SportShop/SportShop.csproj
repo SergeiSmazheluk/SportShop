@@ -24,8 +24,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\SportShop.Context.Business\SportShop.Context.Business.csproj" />
     <ProjectReference Include="..\SportShop.Context.Data\SportShop.Context.Data.csproj" />
     <ProjectReference Include="..\SportShop.Domain.Core\SportShop.Domain.Core.csproj" />
+    <ProjectReference Include="..\SportShop.Services.Interfaces\SportShop.Services.Interfaces.csproj" />
   </ItemGroup>
 
 </Project>

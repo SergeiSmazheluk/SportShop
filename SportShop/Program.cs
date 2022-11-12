@@ -1,7 +1,9 @@
 using Microsoft.EntityFrameworkCore;
+using SportShop.Context.Business;
 using SportShop.Context.Data;
 using SportShop.Context.Data.Repositories;
 using SportShop.Domain.Interfaces;
+using SportShop.Services.Interfaces;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,6 +15,8 @@ builder.Services.AddDbContext<RepositoryDbContext>(opts =>
 });
 
 builder.Services.AddTransient<IRepositoryManager, RepositoryManager>();
+
+builder.Services.AddTransient<IServiceManager, ServiceManager>();
 
 var app = builder.Build();
 

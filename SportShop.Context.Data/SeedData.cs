@@ -26,6 +26,7 @@ namespace SportShop.Context.Data
 						Description = "A boat for one person",
 						Category = "Watersports",
 						Price = 275,
+						Quantity= 12,
 					},
 					new Product
 					{
@@ -33,6 +34,7 @@ namespace SportShop.Context.Data
 						Description = "Protective and fashionable",
 						Category = "Watersports",
 						Price = 48.95m,
+						Quantity = 3,
 					},
 					new Product
 					{
@@ -40,6 +42,7 @@ namespace SportShop.Context.Data
 						Description = "FIFA-approved size and weight",
 						Category = "Soccer",
 						Price = 19.50m,
+						Quantity = 1,
 					},
 					new Product
 					{
@@ -47,6 +50,7 @@ namespace SportShop.Context.Data
 						Description = "Give your playing field a professional touch",
 						Category = "Soccer",
 						Price = 34.95m,
+						Quantity = 19,
 					},
 					new Product
 					{
@@ -54,6 +58,7 @@ namespace SportShop.Context.Data
 						Description = "Flat-packed 35,000-seat stadium",
 						Category = "Soccer",
 						Price = 79500,
+						Quantity = 14,
 					},
 					new Product
 					{
@@ -61,6 +66,7 @@ namespace SportShop.Context.Data
 						Description = "Improve brain efficiency by 75%",
 						Category = "Chess",
 						Price = 16,
+						Quantity = 7,
 					},
 					new Product
 					{
@@ -68,6 +74,7 @@ namespace SportShop.Context.Data
 						Description = "Secretly give your opponent a disadvantage",
 						Category = "Chess",
 						Price = 29.95m,
+						Quantity = 1,
 					},
 					new Product
 					{
@@ -75,6 +82,7 @@ namespace SportShop.Context.Data
 						Description = "A fun game for the family",
 						Category = "Chess",
 						Price = 75,
+						Quantity = 12
 					},
 					new Product
 					{
@@ -82,6 +90,7 @@ namespace SportShop.Context.Data
 						Description = "Gold-plated, diamond-studded King",
 						Category = "Chess",
 						Price = 1200,
+						Quantity = 5,
 					});
 
 				context.SaveChanges();

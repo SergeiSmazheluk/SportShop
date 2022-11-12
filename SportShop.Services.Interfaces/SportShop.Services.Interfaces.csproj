@@ -6,4 +6,8 @@
     <Nullable>disable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\SportShop.Domain.Core\SportShop.Domain.Core.csproj" />
+  </ItemGroup>
+
 </Project>

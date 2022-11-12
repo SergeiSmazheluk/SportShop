@@ -2,7 +2,7 @@
 {
 	public class ProductDto
 	{
-		public long ProductId { get; set; }
+		public int ProductId { get; set; }
 
 		public string Name { get; set; } = string.Empty;
 
