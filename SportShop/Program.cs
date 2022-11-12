@@ -22,6 +22,11 @@ var app = builder.Build();
 
 app.UseStaticFiles();
 
+app.MapControllerRoute(
+    name: "pagination",
+    pattern: "Products/Page{productPage:int}",
+    defaults: new { Controller = "Home", action = "Index", productPage = 1 });
+
 app.MapDefaultControllerRoute();
 
 SeedData.EnsurePopulated(app);

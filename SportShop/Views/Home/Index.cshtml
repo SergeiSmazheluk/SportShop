@@ -1,6 +1,6 @@
-﻿@model IEnumerable<ProductDto>
+﻿@model ProductsListDto
 
-@foreach (var p in Model ?? Enumerable.Empty<ProductDto>())
+@foreach (var p in Model?.Products ?? Enumerable.Empty<ProductDto>())
 {
     <div>
         <h3>@p.Name</h3>
@@ -9,4 +9,4 @@
     </div>
 }
 
-
+<div page-model="@Model?.PagingInfo" page-action="Index"></div>
