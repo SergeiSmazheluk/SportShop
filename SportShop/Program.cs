@@ -18,6 +18,10 @@ builder.Services.AddTransient<IRepositoryManager, RepositoryManager>();
 
 builder.Services.AddTransient<IServiceManager, ServiceManager>();
 
+builder.Services.AddDistributedMemoryCache();
+
+builder.Services.AddSession();
+
 var app = builder.Build();
 
 app.UseStaticFiles();
@@ -28,9 +32,15 @@ app.MapControllerRoute(
       new { Controller = "Home", action = "Index" });
 
 app.MapControllerRoute(
+<<<<<<< Updated upstream
       "shoppingCart",
       "Cart",
       new { Controller = "Cart", action = "Index" });
+=======
+    name: "shoppingCart",
+    pattern: "Cart",
+    defaults: new { Controller = "Cart", action = "Index" });
+>>>>>>> Stashed changes
 
 app.MapControllerRoute(
       "category",
@@ -48,6 +58,8 @@ app.MapControllerRoute(
       new { Controller = "Home", action = "Index" });
 
 app.MapDefaultControllerRoute();
+
+app.UseSession();
 
 SeedData.EnsurePopulated(app);
 
