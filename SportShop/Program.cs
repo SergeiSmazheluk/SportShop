@@ -28,6 +28,11 @@ app.MapControllerRoute(
       new { Controller = "Home", action = "Index" });
 
 app.MapControllerRoute(
+      "shoppingCart",
+      "Cart",
+      new { Controller = "Cart", action = "Index" });
+
+app.MapControllerRoute(
       "category",
       "{category}",
       new { Controller = "Home", action = "Index", productPage = 1 });
