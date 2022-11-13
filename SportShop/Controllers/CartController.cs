@@ -8,10 +8,13 @@ namespace SportShop.Controllers
     {
         private readonly IServiceManager _servicesManager;
 
-        public CartController(IServiceManager servicesManager)
+        public CartController(IServiceManager servicesManager, CartFeatures cart)
         {
             _servicesManager = servicesManager;
+            CartFeature = cart;
         }
+
+        public CartFeatures CartFeature { get; set; }
 
         [HttpGet]
         public IActionResult Index(string returnUrl)
@@ -19,7 +22,7 @@ namespace SportShop.Controllers
             var cartViewInfo = new CartViewInfo
             {
                 ReturnUrl = returnUrl ?? "/",
-                Cart = HttpContext.Session.GetJson<CartFeatures>("cart") ?? new CartFeatures(),
+                Cart = CartFeature,
             };
 
             return View(cartViewInfo);
@@ -32,10 +35,8 @@ namespace SportShop.Controllers
 
             if (product != null)
             {
-                var cart = HttpContext.Session.GetJson<CartFeatures>("cart") ?? new CartFeatures();
-                cart.AddItem(product, 1);
-                HttpContext.Session.SetJson("cart", cart);
-                var cartViewInfo = new CartViewInfo { Cart = cart, ReturnUrl = returnUrl };
+                CartFeature.AddItem(product, 1);
+                var cartViewInfo = new CartViewInfo { Cart = CartFeature, ReturnUrl = returnUrl };
 
                 return View(cartViewInfo);
             }

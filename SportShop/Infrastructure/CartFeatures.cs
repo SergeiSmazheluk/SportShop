@@ -8,7 +8,7 @@ namespace SportShop.Infrastructure
 
         public IReadOnlyList<CartLine> Lines { get { return lines; } }
 
-        public void AddItem(ProductDto product, int quantity)
+        public virtual void AddItem(ProductDto product, int quantity)
         {
             var line = lines
                 .Where(p => p.Product.ProductId == product.ProductId)
@@ -28,7 +28,7 @@ namespace SportShop.Infrastructure
             }
         }
 
-        public void RemoveLine(ProductDto product)
+        public virtual void RemoveLine(ProductDto product)
         {
             lines.RemoveAll(l => l.Product.ProductId == product.ProductId);
         }
@@ -39,7 +39,7 @@ namespace SportShop.Infrastructure
             return total;
         }
 
-        public void Clear()
+        public virtual void Clear()
         {
             lines.Clear();
         }

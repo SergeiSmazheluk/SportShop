@@ -3,6 +3,7 @@ using SportShop.Context.Business;
 using SportShop.Context.Data;
 using SportShop.Context.Data.Repositories;
 using SportShop.Domain.Interfaces;
+using SportShop.Infrastructure;
 using SportShop.Services.Interfaces;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -21,6 +22,10 @@ builder.Services.AddTransient<IServiceManager, ServiceManager>();
 builder.Services.AddDistributedMemoryCache();
 
 builder.Services.AddSession();
+
+builder.Services.AddTransient<CartFeatures>(SessionCart.GetCart);
+
+builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
 var app = builder.Build();
 
