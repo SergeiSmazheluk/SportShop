@@ -5,16 +5,16 @@ namespace SportShop.Components
 {
 	public class CartSummaryViewComponent : ViewComponent
 	{
-		private CartFeatures cart;
+		private CartFeatures _cart;
 
 		public CartSummaryViewComponent(CartFeatures cart)
 		{
-			this.cart = cart;
+			_cart = cart;
 		}
 
 		public IViewComponentResult Invoke()
 		{
-			return View(cart);
+			return View(_cart);
 		}
 	}
 }
