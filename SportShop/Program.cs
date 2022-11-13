@@ -56,6 +56,11 @@ app.MapControllerRoute(
       "/",
       new { Controller = "Home", action = "Index" });
 
+app.MapControllerRoute(
+	  "remove",
+	  "Remove",
+	  new { Controller = "Cart", action = "Remove" });
+
 app.MapDefaultControllerRoute();
 
 app.UseSession();
