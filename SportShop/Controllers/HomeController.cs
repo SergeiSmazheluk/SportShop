@@ -15,11 +15,12 @@ namespace SportShop.Controllers
 
         public int PageSize = 4;
 
-        public async Task<ViewResult> Index(int productPage = 1)
+        public async Task<ViewResult> Index(string category, int productPage = 1)
         {
             var productsDto = await _serviceManager.StoreService.GetProductsAsync();
 
             var productsForPaging = productsDto
+                    .Where(p => category == null || p.Category == category)
                     .OrderBy(p => p.ProductId)
                     .Skip((productPage - 1) * PageSize)
                     .Take(PageSize);
@@ -28,13 +29,15 @@ namespace SportShop.Controllers
             {
                 CurrentPage = productPage,
                 ItemsPerPage = PageSize,
-                TotalItems = productsDto.Count(),
+				TotalItems = category == null ? productsDto.Count() : 
+                    productsDto.Where(e => e.Category == category).Count(),
             };
 
             var productsListDto = new ProductsListDto
             {
                 Products = productsForPaging,
-                PagingInfo = pagingInfo
+                PagingInfo = pagingInfo,
+                CurrentCategory = category,
             };
 
             return View(productsListDto);

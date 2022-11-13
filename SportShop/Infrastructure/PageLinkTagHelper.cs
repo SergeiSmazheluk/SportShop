@@ -10,12 +10,16 @@ namespace SportShop.Infrastructure
     [HtmlTargetElement("div", Attributes = "page-model")]
     public class PageLinkTagHelper : TagHelper
     {
-        private IUrlHelperFactory urlHelperFactory;
+        private IUrlHelperFactory urlHelperFactory;     
 
         public PageLinkTagHelper(IUrlHelperFactory helperFactory)
         {
             urlHelperFactory = helperFactory;
         }
+
+        [HtmlAttributeName(DictionaryAttributePrefix = "page-url-")]
+        public Dictionary<string, object> PageUrlValues { get; set; } = new Dictionary<string, object>();
+
 
         public bool PageClassesEnabled { get; set; } = false;
 
@@ -39,28 +43,26 @@ namespace SportShop.Infrastructure
             if (ViewContext != null && PageModel != null)
             {
                 var urlHelper = urlHelperFactory.GetUrlHelper(ViewContext);
-
                 var result = new TagBuilder("div");
-
                 for (int i = 1; i <= PageModel.TotalPages; i++)
                 {
                     var tag = new TagBuilder("a");
-
-                    tag.Attributes["href"] = urlHelper.Action(PageAction, new { productPage = i });
-
-                    tag.InnerHtml.Append(i.ToString());
-
-                    result.InnerHtml.AppendHtml(tag);
+                    PageUrlValues["productPage"] = i;
+                    tag.Attributes["href"] = urlHelper.Action(PageAction, PageUrlValues);
 
                     if (PageClassesEnabled)
                     {
                         tag.AddCssClass(PageClass);
                         tag.AddCssClass(i == PageModel.CurrentPage ? PageClassSelected : PageClassNormal);
                     }
+
+                    tag.InnerHtml.Append(i.ToString());
+                    result.InnerHtml.AppendHtml(tag);
                 }
 
                 output.Content.AppendHtml(result.InnerHtml);
             }
         }
     }
+
 }

@@ -9,9 +9,9 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllersWithViews();
 
-builder.Services.AddDbContext<RepositoryDbContext>(opts => 
+builder.Services.AddDbContext<RepositoryDbContext>(opts =>
 {
-	opts.UseSqlServer(builder.Configuration["ConnectionStrings:SportsStoreConnection"]);
+    opts.UseSqlServer(builder.Configuration["ConnectionStrings:SportsStoreConnection"]);
 });
 
 builder.Services.AddTransient<IRepositoryManager, RepositoryManager>();
@@ -23,9 +23,24 @@ var app = builder.Build();
 app.UseStaticFiles();
 
 app.MapControllerRoute(
-    name: "pagination",
-    pattern: "Products/Page{productPage:int}",
-    defaults: new { Controller = "Home", action = "Index", productPage = 1 });
+      "categoryPage",
+      "Products/{category}/Page{productPage:int}",
+      new { Controller = "Home", action = "Index" });
+
+app.MapControllerRoute(
+      "category",
+      "{category}",
+      new { Controller = "Home", action = "Index", productPage = 1 });
+
+app.MapControllerRoute(
+    "pagination",
+    "Products/Page{productPage}",
+    new { Controller = "Home", action = "Index", productPage = 1 });
+
+app.MapControllerRoute(
+      "default",
+      "/",
+      new { Controller = "Home", action = "Index" });
 
 app.MapDefaultControllerRoute();
 
