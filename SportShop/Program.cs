@@ -32,15 +32,9 @@ app.MapControllerRoute(
       new { Controller = "Home", action = "Index" });
 
 app.MapControllerRoute(
-<<<<<<< Updated upstream
       "shoppingCart",
       "Cart",
       new { Controller = "Cart", action = "Index" });
-=======
-    name: "shoppingCart",
-    pattern: "Cart",
-    defaults: new { Controller = "Cart", action = "Index" });
->>>>>>> Stashed changes
 
 app.MapControllerRoute(
       "category",

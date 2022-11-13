@@ -1,4 +1,6 @@
-﻿namespace SportShop.Domain.Core.DTO
+﻿using SportShop.Domain.Core.DTO;
+
+namespace SportShop.Infrastructure
 {
     public class CartLine
     {
