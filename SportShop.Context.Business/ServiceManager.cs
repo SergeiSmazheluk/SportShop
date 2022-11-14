@@ -7,6 +7,7 @@ namespace SportShop.Context.Business
     {
         private readonly Lazy<IStoreService> _lazyStoreService;
         private readonly Lazy<IOrderService> _lazyOrderService;
+
         public ServiceManager(IRepositoryManager repositoryManager)
         {
             _lazyStoreService = new Lazy<IStoreService>(() => new StoreService(repositoryManager));
@@ -14,7 +15,6 @@ namespace SportShop.Context.Business
         }
 
         public IOrderService OrderService => _lazyOrderService.Value;
-
         public IStoreService StoreService => _lazyStoreService.Value;
     }
 }

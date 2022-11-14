@@ -1,4 +1,5 @@
 ﻿using Mapster;
+using Microsoft.Extensions.Logging;
 using SportShop.Domain.Core.DTO;
 using SportShop.Domain.Core.Models;
 using SportShop.Domain.Interfaces;
@@ -38,7 +39,7 @@ namespace SportShop.Context.Business
         {
             var products = await _repositoryManager.StoreRepository.GetProductsAsync(cancellationToken);
 
-            var productsDto = products.Adapt<IEnumerable<ProductDto>>();
+            var productsDto = products.Adapt<IEnumerable<ProductDto>>();         
 
             return productsDto;
         }

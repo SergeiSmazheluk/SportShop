@@ -26,7 +26,7 @@ namespace SportShop.Context.Business
 
 			if (order is null)
 			{
-				throw new ValidationException("Order is not found!", string.Empty);
+                throw new ValidationException("Order is not found!", string.Empty);
 			}
 
 			var orderDto = order.Adapt<OrderDto>();
@@ -37,7 +37,6 @@ namespace SportShop.Context.Business
 		public async Task<IEnumerable<OrderDto>> GetOrdersAsync(CancellationToken cancellationToken = default)
 		{
 			var orders = await _repositoryManager.OrderRepository.GetOrdersAsync(cancellationToken);
-
 			var ordersDto = orders.Adapt<IEnumerable<OrderDto>>();
 
 			return ordersDto;
@@ -78,9 +77,7 @@ namespace SportShop.Context.Business
 			}
 
 			var order = orderDto.Adapt<Order>();
-
 			_repositoryManager.OrderRepository.InsertOrder(order);
-
 			await _repositoryManager.UnitOfWork.SaveChangesAsync(cancellationToken);
 		}
 
@@ -99,7 +96,6 @@ namespace SportShop.Context.Business
 			}
 
 			_repositoryManager.OrderRepository.DeleteOrder(order);
-
 			await _repositoryManager.UnitOfWork.SaveChangesAsync();
 		}		
 	}

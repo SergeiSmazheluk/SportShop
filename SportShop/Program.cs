@@ -27,6 +27,8 @@ builder.Services.AddTransient<CartFeatures>(SessionCart.GetCart);
 
 builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
+builder.Services.AddSwaggerGen();
+
 var app = builder.Build();
 
 app.UseStaticFiles();
@@ -67,6 +69,12 @@ app.MapControllerRoute(
 	name: "remove",
 	pattern: "Remove",
 	defaults: new { Controller = "Cart", action = "Remove" });
+
+app.UseSwagger();
+app.UseSwaggerUI(c =>
+{
+    c.SwaggerEndpoint("/swagger/v1/swagger.json", "SportShop");
+});
 
 SeedData.EnsurePopulated(app);
 

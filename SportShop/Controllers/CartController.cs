@@ -17,7 +17,7 @@ namespace SportShop.Controllers
 		public CartFeatures CartFeature { get; set; }
 
 		[HttpGet]
-		public IActionResult Index(string returnUrl)
+		public IActionResult Index([FromRoute] string returnUrl)
 		{
 			var cartViewInfo = new CartViewInfo
 			{
@@ -29,7 +29,7 @@ namespace SportShop.Controllers
 		}
 
 		[HttpPost]
-		public async Task<IActionResult> Index(int productId, string returnUrl)
+		public async Task<IActionResult> Index([FromForm] int productId, [FromForm] string returnUrl)
 		{
 			var product = await _servicesManager.StoreService.GetProductByIdAsync(productId);
 
@@ -46,7 +46,7 @@ namespace SportShop.Controllers
 
 		[HttpPost]
 		[Route("Cart/Remove")]
-		public IActionResult Remove(int productId, string returnUrl)
+		public IActionResult Remove([FromForm] int productId, [FromForm] string returnUrl)
 		{
 			var product = CartFeature.Lines.First(cl => cl.Product.ProductId == productId).Product;
 
